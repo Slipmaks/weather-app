@@ -9,16 +9,41 @@
     </a>
   </div>
   <section>
-    <p>{{ useStore.count }}</p>
-    <button @click="useStore.incrementCount">++</button>
-    <button @click="useStore.decrementCount">--</button>
+    <!-- <section v-if="useStore?.currentLocation?.length > 0"> -->
+    <section v-if="!useStore.isLoad">
+      <h2>Pogoda</h2>
+      <p>{{ useStore.current.temp_c }} celcium</p>
+      <p>Oblast: {{ useStore.location.name }}</p>
+      <p>Region: {{ useStore.location.region }}</p>
+    </section>
+
+    <p>
+      Lalitude: {{ useStore.coords.latitude }}, Longtitude:
+      {{ useStore.coords.longitude }}
+    </p>
   </section>
 </template>
 
 <script setup>
 import { store } from "./store/index";
 import TheHeader from "./components/TheHeader.vue";
+import { onMounted } from "vue";
+
 const useStore = store();
+// const { current, location } = useStore;
+
+// const currentLocation = useStore.currentLocation;
+
+const getPosition = onMounted(() => {
+  const success = (pos) => {
+    useStore.defineCoords(pos);
+    useStore.getWeather();
+  };
+  const error = (err) => {
+    console.log(err);
+  };
+  navigator.geolocation.getCurrentPosition(success, error);
+});
 </script>
 
 <style scoped>
