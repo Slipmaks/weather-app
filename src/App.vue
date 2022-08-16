@@ -3,6 +3,7 @@
     <the-header></the-header>
 
     <modal-weather></modal-weather>
+    <the-footer></the-footer>
   </section>
 </template>
 
@@ -11,6 +12,7 @@ import ModalWeather from "./components/ModalWeather.vue";
 import { store } from "./store/index";
 import TheHeader from "./components/TheHeader.vue";
 import { onMounted } from "vue";
+import TheFooter from "./components/TheFooter.vue";
 
 const useStore = store();
 
@@ -28,6 +30,6 @@ onMounted(() => {
 
 <style scoped>
 .wrapper {
-  @apply flex flex-col items-center justify-start;
+  @apply flex flex-col items-center justify-start h-full;
 }
 </style>
