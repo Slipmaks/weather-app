@@ -1,6 +1,6 @@
 <template>
   <section class="flex-0">
-    <h2>Modal view</h2>
+    <!-- <h2>Modal view</h2> -->
     <section class="modal-wrapper" v-if="!useStore.isLoad">
       <section
         class="flex justify-between items-center flex-col m-2 bg-cyan-800 bg-opacity-20 rounded-lg p-2"
@@ -30,6 +30,7 @@
 <script setup>
 import { store } from "../store/index";
 import { storeToRefs } from "pinia";
+
 const useStore = store();
 const { current, location } = storeToRefs(useStore);
 </script>

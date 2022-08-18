@@ -1,20 +1,27 @@
 <template>
   <section class="wrapper">
     <the-header></the-header>
-
-    <modal-weather></modal-weather>
+    <!-- <button @click="switchView">switch</button> -->
+    <component :is="componentsList[comp]"></component>
     <the-footer></the-footer>
   </section>
 </template>
 
 <script setup>
-import ModalWeather from "./components/ModalWeather.vue";
-import { store } from "./store/index";
 import TheHeader from "./components/TheHeader.vue";
-import { onMounted } from "vue";
+import ModalWeather from "./components/ModalWeather.vue";
+import PageWeather from "./components/PageWeather.vue";
 import TheFooter from "./components/TheFooter.vue";
+import { store } from "./store/index";
+import { onMounted, ref } from "vue";
+
+const componentsList = {
+  ModalWeather,
+  PageWeather,
+};
 
 const useStore = store();
+const comp = ref("ModalWeather");
 
 onMounted(() => {
   const success = (pos) => {
@@ -26,6 +33,14 @@ onMounted(() => {
   };
   navigator.geolocation.getCurrentPosition(success, error);
 });
+
+const switchView = () => {
+  if (comp.value === "ModalWeather") {
+    comp.value = "PageWeather";
+  } else {
+    comp.value = "ModalWeather";
+  }
+};
 </script>
 
 <style scoped>
