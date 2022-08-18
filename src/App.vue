@@ -45,6 +45,6 @@ const switchView = () => {
 
 <style scoped>
 .wrapper {
-  @apply flex flex-col items-center justify-start h-full;
+  @apply flex flex-col items-center justify-start h-full mx-2;
 }
 </style>
