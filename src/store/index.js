@@ -16,7 +16,7 @@ export const store = defineStore("main", {
     },
     async getWeather() {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${this.API_KEY}&q=${this.coords.latitude},${this.coords.longitude}&aqi=no`
+        `https://api.weatherapi.com/v1/current.json?key=${this.API_KEY}&q=${this.coords.latitude},${this.coords.longitude}&aqi=no`
       );
       if (response.ok) {
         let { current, location } = await response.json();
